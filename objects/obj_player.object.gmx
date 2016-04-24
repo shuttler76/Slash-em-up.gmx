@@ -6,7 +6,7 @@
   <depth>-1</depth>
   <persistent>0</persistent>
   <parentName>obj_entity</parentName>
-  <maskName>mask</maskName>
+  <maskName>msk_player_standing</maskName>
   <events>
     <event eventtype="0" enumb="0">
       <action>
@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_speed = 0.1;
+            <string>event_inherited();
+image_speed = 0.1;
 grav = 1;
 spd = 3;
 jspd = 10;
@@ -35,10 +36,12 @@ vspd = 0;
 airjump = 1;
 state = scr_move_state;
 hp = 20;
+attacking = false;
 attacked = false;
 audio = false;
 whirl = 30;
 instance_create(x,y,obj_camera);
+
 </string>
           </argument>
         </arguments>
@@ -68,7 +71,7 @@ script_execute(state);
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="obj_zombie">
+    <event eventtype="4" ename="obj_enemy">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -117,6 +120,86 @@ if (state == scr_attack_state or state == scr_attack_state_2 or state == scr_att
     attacked = false;
 }
 </string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>500</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring>draw_self();</codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>514</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_draw_text</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>-1</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>2</kind>
+            <string>"Grounded:"+string(grounded)</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>-15</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>-32</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>511</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_draw_rectangle</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>x + bbox_left</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>y + bbox_bottom</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>x + bbox_right</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>x + bbox_top</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>1</string>
           </argument>
         </arguments>
       </action>

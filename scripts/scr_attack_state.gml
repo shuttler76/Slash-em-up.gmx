@@ -1,5 +1,5 @@
 ///scr_attack_state()
-image_speed = 0.6;
+image_speed = 2;
 
 //create effect
 if hspd != 0 {
@@ -16,19 +16,9 @@ if (!audio && state = scr_attack_state) {
 
 if hspd != 0 {
     hspd/=2;
-    sprite_index = spr_player_attack;
 }
 
-//horizontal collisions
-if (place_meeting(x+hspd,y,obj_solid)) {
-    while (!place_meeting(x+sign(hspd),y,obj_solid)) {
-        x += sign(hspd);
-    }
-    hspd = 0;
-}
-
-//move horizontally
-x += hspd;
+scr_process_movement();
 
 //control sprite
 if hspd < 0 {
@@ -39,23 +29,7 @@ if hspd > 0 {
 }
 sprite_index=spr_player_attack;
 
-//check if grounded
-if (!place_meeting(x,y+1,obj_solid)) {
-    if (vspd < 10) {
-        vspd += grav;
-    }
-}
 
-//vertical collisions
-if (place_meeting(x,y+vspd,obj_solid)) {
-    while (!place_meeting(x,y+sign(vspd),obj_solid)) {
-        y += sign(vspd);
-    }
-    vspd = 0;
-}
-
-//move vertically
-y += vspd;
 
 //create the hitbox
 if (image_index >= 2 && attacked = false) {
@@ -73,21 +47,14 @@ if (image_index > 5 && mouse_check_button_pressed(mb_left)){
         enemy = instance_nearest(x,y,obj_enemy);
         if (keyboard_check(ord('A')) or keyboard_check(ord('D'))) and y == enemy.y {
             hspd = lengthdir_x(x-enemy.x, 180)/2;
-        } else {
-            if keyboard_check(ord('A')) {
-                hspd = -spd*8;
-            }
-            if keyboard_check(ord('D')) {
-                hspd = spd*8;
-            }
+            return 0;
         }
-    } else {
-        if keyboard_check(ord('A')) {
-            hspd = -spd*8;
-        }
-        if keyboard_check(ord('D')) {
-            hspd = spd*8;
-        }
+    }
+    if keyboard_check(ord('A')) {
+        hspd = -spd*8;
+    }
+    if keyboard_check(ord('D')) {
+        hspd = spd*8;
     }
 }
 

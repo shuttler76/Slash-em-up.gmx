@@ -10,7 +10,7 @@
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\spr_block</sprite>
-    <sprite>sprites\mask</sprite>
+    <sprite>sprites\msk_player_standing</sprite>
     <sprite>sprites\spr_damage</sprite>
     <sprite>sprites\spr_enemy</sprite>
     <sprite>sprites\spr_enemy_death</sprite>
@@ -59,6 +59,8 @@
       <script>scripts\scr_ledge_grab_state.gml</script>
       <script>scripts\scr_attack_state_air.gml</script>
       <script>scripts\scr_wall_stab_state.gml</script>
+      <script>scripts\scr_process_movement.gml</script>
+      <script>scripts\scr_attack.gml</script>
     </scripts>
     <scripts name="Enemy Scripts">
       <script>scripts\scr_enemy_idle_state.gml</script>
@@ -91,8 +93,8 @@
     <object>objects\obj_stabable</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_eye_boss</room>
     <room>rooms\rm_start</room>
+    <room>rooms\rm_eye_boss</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

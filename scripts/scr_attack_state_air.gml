@@ -6,13 +6,7 @@ if (!audio && state = scr_attack_state_air) {
     audio = true;
 }
 
-if hspd > 0 {
-    hspd = spd;
-}
-
-if hspd < 0 {
-    hspd = -spd;
-}
+hspd = spd * sign(hspd);
 
 if (place_meeting(x,y+1,obj_solid)) {
     sprite_index = spr_attack_air_land;
@@ -20,31 +14,11 @@ if (place_meeting(x,y+1,obj_solid)) {
     sprite_index = spr_player_attack_air;
 }
 
-//horizontal collisions
-if (place_meeting(x+hspd,y,obj_solid)) {
-    while (!place_meeting(x+sign(hspd),y,obj_solid)) {
-        x += sign(hspd);
-    }
-    hspd = 0;
-}
+
+scr_process_movement();
 
 //move horizontally
-if vspd != 0 x += hspd;
-
-if (!place_meeting(x,y+1,obj_solid)) {
-    if (vspd < 10) {
-        vspd += grav;
-    }
-}
-
-if (place_meeting(x,y+vspd,obj_solid)) {
-    while (!place_meeting(x,y+sign(vspd),obj_solid)) {
-        y += sign(vspd);
-    }
-    vspd = 0;
-}
-
-y += vspd;
+if (vspd == 0) x -= hspd;
 
 if (image_index >= 2 && attacked = false) {
     var damage = instance_create(x,y,obj_damage);

@@ -23,31 +23,7 @@ if (lkey) {
     image_xscale = -1;
 }
 
-//horizontal collisions
-if (place_meeting(x+hspd,y,obj_solid)) {
-    while (!place_meeting(x+sign(hspd),y,obj_solid)) {
-        x += sign(hspd);
-    }
-    hspd = 0;
-}
-
-//move horizontally
-x += hspd;
-
-if (!place_meeting(x,y+1,obj_solid)) {
-    if (vspd < 10) {
-        vspd += grav;
-    }
-}
-
-if (place_meeting(x,y+vspd,obj_solid)) {
-    while (!place_meeting(x,y+sign(vspd),obj_solid)) {
-        y += sign(vspd);
-    }
-    vspd = 0;
-}
-
-y += vspd;
+scr_process_movement();
 
 if (whirl%4 = 0) {
     var damage = instance_create(x,y,obj_damage);

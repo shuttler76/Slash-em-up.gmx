@@ -12,3 +12,4 @@ if (jkey) {
 if (dkey) {
     state = scr_move_state;
 }
+
