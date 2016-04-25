@@ -33,8 +33,6 @@ if (whirl%4 = 0) {
 if (whirl = 0) {
     if (place_meeting(x,y+1,obj_solid)) { 
         state = scr_move_state;
-    } else {
-        whirl = 30;
     }
 } else {
     whirl -= 1;

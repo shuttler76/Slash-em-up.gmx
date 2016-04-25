@@ -11,4 +11,5 @@ if (jkey) {
 
 if (dkey) {
     state = scr_move_state;
+    vspd = 0;
 }

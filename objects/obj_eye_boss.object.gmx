@@ -79,8 +79,8 @@ dead = false;
 
 //Radians from eye to mouse.
 var a = arctan2(obj_player.x - x, obj_player.y - y) ;
-var drawPosX = (x+sprite_width/2.05) + cos(-a + degtorad(90)) * 10;
-var drawPosY = (y+sprite_height/2) + sin(-a + degtorad(90)) * 10;
+var drawPosX = (x) + cos(-a + degtorad(90)) * 10;
+var drawPosY = (y) + sin(-a + degtorad(90)) * 10;
 
 draw_sprite(spr_eye,0,drawPosX,drawPosY);
 </string>
